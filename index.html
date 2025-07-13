@@ -453,12 +453,6 @@
             position: relative;
             border-image: linear-gradient(45deg, #8b4513, #cd853f, #daa520, #8b4513) 4;
         }
-        
-        .comic-panel img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
 
         .comic-panel::before {
             content: "🎭 Comic Panel";
@@ -723,28 +717,28 @@
                     <h4 style="color: #f4f1de; text-align: center; margin-bottom: 20px; display: none;" data-puzzle-lang="adv">Cartographic.References</h4>
                     
                     <div class="map-container">
-                        <div class="placeholder" data-story-lang="zh">
+                        <div class="placeholder" data-puzzle-lang="mwt">
                             [Hap A: Na-pnō M̄otlap - mahē alge, ne-vet A B C, na-tēy Kaikoa]
                         </div>
-                        <div class="placeholder" data-story-lang="en" style="display: none;">
+                        <div class="placeholder" data-puzzle-lang="adv" style="display: none;">
                             [Map.1: M̄otlap.topography - watchtower.coordinates + stone.triangle.ABC + Kaikoa.route.trace]
                         </div>
                     </div>
                     
                     <div class="map-container">
-                        <div class="placeholder" data-story-lang="zh">
+                        <div class="placeholder" data-puzzle-lang="mwt">
                             [Hap B: Na-pnō Men - nē-lē bah na-tēy le-lo maze]
                         </div>
-                        <div class="placeholder" data-story-lang="en" style="display: none;">
+                        <div class="placeholder" data-puzzle-lang="adv" style="display: none;">
                             [Map.2: Men.island.structure - cave.system + maze.navigation.D + exit.protocol]
                         </div>
                     </div>
                     
                     <div class="map-container">
-                        <div class="placeholder" data-story-lang="zh">
+                        <div class="placeholder" data-puzzle-lang="mwt">
                             [Hap C: Na-pnō Itôk - n-ēm̄ yon̄, n-ēm̄ su A B C, na-han̄ yow]
                         </div>
-                        <div class="placeholder" data-story-lang="en" style="display: none;">
+                        <div class="placeholder" data-puzzle-lang="adv" style="display: none;">
                             [Map.3: Itôk.settlement.grid - chapel.central + hut.constellation.ABC + totem.positioning.matrix]
                         </div>
                     </div>
@@ -799,10 +793,13 @@
 
                 <div class="story-element">
                     <div class="comic-panel">
-<!--                         <div class="placeholder">
+                        <img src="images/1-1. Greeting.png" 
+                             alt="Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
                             [Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach - replace with your actual comic panel]
-                        </div> -->
-                        <img alt="Kaikoa greets the pair" src="images/1-1. Greeting.png"> 
+                        </div>
                     </div>
                 </div>
 
@@ -819,7 +816,11 @@
 
                 <div class="story-element">
                     <div class="comic-panel">
-                        <div class="placeholder">
+                        <img src="path/to/your/comic2.jpg" 
+                             alt="Comic Panel 2: Kaikoa showing them the watchtower"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
                             [Comic Panel 2: Kaikoa showing them the watchtower - "Gēn van hag!" - replace with your actual comic panel]
                         </div>
                     </div>
@@ -838,7 +839,11 @@
 
                 <div class="story-element">
                     <div class="comic-panel">
-                        <div class="placeholder">
+                        <img src="path/to/your/comic3.jpg" 
+                             alt="Comic Panel 3: The tragic accident - Vetea shouting"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
                             [Comic Panel 3: The tragic accident - Vetea shouting "That's not what yow means here!" as he throws himself toward the bomb - replace with your actual comic panel]
                         </div>
                     </div>
@@ -911,7 +916,11 @@
 
                 <div class="story-element">
                     <div class="comic-panel">
-                        <div class="placeholder">
+                        <img src="path/to/your/comic4.jpg" 
+                             alt="Comic Panel 4: David asking residents about the totem poles"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
                             [Comic Panel 4: David showing his drawings to the Happy Island residents and asking about the totem poles - replace with your actual comic panel]
                         </div>
                     </div>
