@@ -16,9 +16,10 @@
             line-height: 1.6;
             color: #2c1810;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 206, 84, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(72, 187, 120, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #74b9ff 0%, #0984e3 30%, #00b894 70%, #00cec9 100%);
+                radial-gradient(circle at 15% 85%, rgba(255, 183, 77, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 85% 15%, rgba(46, 213, 115, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(116, 185, 255, 0.3) 0%, transparent 60%),
+                linear-gradient(135deg, #00cec9 0%, #55efc4 25%, #74b9ff 50%, #fd79a8 75%, #fdcb6e 100%);
             min-height: 100vh;
             background-attachment: fixed;
             position: relative;
@@ -32,12 +33,21 @@
             width: 100%;
             height: 100%;
             background: 
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.15)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat,
-                radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 200px 200px, 50px 50px;
-            opacity: 0.6;
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.25)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.15)"/><circle cx="60" cy="20" r="1" fill="rgba(46,213,115,0.2)"/><circle cx="30" cy="60" r="1.5" fill="rgba(255,183,77,0.25)"/></svg>') repeat,
+                radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 75% 25%, rgba(46, 213, 115, 0.15) 1px, transparent 1px);
+            background-size: 150px 150px, 80px 80px, 120px 120px;
+            opacity: 0.8;
             pointer-events: none;
             z-index: -1;
+            animation: floatBubbles 20s ease-in-out infinite;
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -15px); }
+            50% { transform: translate(-5px, -25px); }
+            75% { transform: translate(-10px, -10px); }
         }
 
         .main-container {
@@ -224,7 +234,7 @@
         }
 
         .content-area.sidebar-open {
-            margin-left: 380px;
+            margin-left: 0px;
         }
 
         header {
@@ -573,6 +583,11 @@
         .chinese-text {
             font-family: 'Microsoft JhengHei', 'Noto Sans CJK TC', sans-serif;
             line-height: 1.8;
+            font-style: normal;
+        }
+
+        .chinese-label {
+            font-family: Arial, sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -581,17 +596,40 @@
             }
             
             .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                left: 0;
-                top: 0;
-                border-radius: 0;
+                position: fixed;
+                top: 120px;
+                left: -380px;
+                width: 380px;
+                height: calc(100vh - 120px);
+                z-index: 2000;
+                transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            
+            .sidebar.expanded {
+                left: 0px;
             }
             
             .content-area {
-                margin-left: 0;
+                margin-left: 0 !important;
                 max-width: 100vw;
+            }
+            
+            .content-area.sidebar-open {
+                margin-left: 0 !important;
+            }
+            
+            /* Add overlay backdrop on mobile when sidebar is open */
+            .sidebar.expanded::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+                pointer-events: auto;
+                display: none;
             }
             
             h1 {
@@ -602,6 +640,15 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
+            }
+            
+            .bookmark-tabs {
+                right: -60px;
+            }
+            
+            .tab-trigger {
+                width: 60px;
+                min-height: 120px;
             }
         }
     </style>
@@ -701,8 +748,8 @@
 
         <div class="content-area">
             <header>
-                <h1>七顆神秘寶石</h1>
-                <h1 style="font-size: 2em; margin-top: -10px;">The Seven Mystic Stones</h1>
+                <h1 data-story-lang="en">The Seven Mystic Stones</h1>
+                <h1 data-story-lang="zh" style="display: none;" class="chinese-text">七顆神秘寶石</h1>
                 <p class="subtitle">A Mwotlap Linguistic Treasure Hunt</p>
                 
                 <div class="language-controls">
@@ -714,7 +761,7 @@
                         </div>
                         <div class="language-labels">
                             <span id="storyLang1">EN</span>
-                            <span id="storyLang2">中文</span>
+                            <span id="storyLang2" class="chinese-label">中文</span>
                         </div>
                     </div>
                     
@@ -1058,15 +1105,4 @@
         }
     </script>
 </body>
-</html>narration" data-story-lang="en">
-                        <p>It all began with a bottle washed ashore. David, a travel blogger drawn to the unexpected, found it half-buried in the sand on a remote Taiwanese beach months ago. Inside was a letter—weathered, sun-bleached, and written in a language he couldn't recognize.</p>
-                        <p>He turned to Reddit for help. Weeks passed. Then months. Just when he was ready to give up, a message finally arrived from Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava.</p>
-                    </div>
-                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
-                        <p>這一切都始於一個被沖上岸的瓶子。大衛是一名被意外所吸引的旅行部落客，幾個月前在台灣一個偏遠海灘上發現了這個半埋在沙中的瓶子。裡面有一封信——經受風雨侵蝕、被陽光漂白，用他無法辨認的語言寫成。</p>
-                        <p>他向Reddit求助。幾週過去了，然後是幾個月。就在他準備放棄的時候，終於收到了一條訊息，來自瓦努阿圖的年輕人維提亞，他會說莫特拉普語——一種只有約2000人在莫塔拉瓦島上使用的語言。</p>
-                    </div>
-                </div>
-
-                <div class="story-element">
-                    <div class="
+</html>
