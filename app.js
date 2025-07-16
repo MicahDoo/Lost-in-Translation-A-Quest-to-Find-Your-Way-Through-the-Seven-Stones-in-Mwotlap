@@ -30,19 +30,26 @@ class MwotlapTreasureHunt {
             this.closeSidebar();
         });
 
-        // Language toggles
-        document.querySelector('.switch[onclick*="toggleStoryLanguage"]')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.toggleStoryLanguage();
-        });
-
-        document.querySelector('.switch[onclick*="togglePuzzleLanguage"]')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.togglePuzzleLanguage();
-        });
+        // Language toggles - target the switch containers, not the switches themselves
+        const storyLanguageSwitch = document.querySelector('.language-switch .switch');
+        const puzzleLanguageSwitch = document.querySelectorAll('.language-switch .switch')[1];
+        
+        if (storyLanguageSwitch) {
+            storyLanguageSwitch.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleStoryLanguage();
+            });
+        }
+        
+        if (puzzleLanguageSwitch) {
+            puzzleLanguageSwitch.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.togglePuzzleLanguage();
+            });
+        }
 
         // Answer reveal button
-        document.querySelector('[onclick*="showAnswers"]')?.addEventListener('click', (e) => {
+        document.querySelector('.answer-toggle-btn')?.addEventListener('click', (e) => {
             e.preventDefault();
             this.toggleAnswers(e.target);
         });
