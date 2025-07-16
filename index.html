@@ -10,17 +10,17 @@
     <div class="main-container">
         <div class="sidebar" id="sidebar">
             <div class="bookmark-tabs">
-                <button class="tab-trigger active" data-tab="letter">
+                <button class="tab-trigger active" onclick="showTab('letter')" data-tab="letter">
                     <span class="tab-icon">🗞️</span>
                     <span class="tab-text">LETTER</span>
                 </button>
-                <button class="tab-trigger" data-tab="maps">
+                <button class="tab-trigger" onclick="showTab('maps')" data-tab="maps">
                     <span class="tab-icon">🗺️</span>
                     <span class="tab-text">MAPS</span>
                 </button>
             </div>
             
-            <button class="close-sidebar">&times;</button>
+            <button class="close-sidebar" onclick="closeSidebar()">&times;</button>
             <div class="sidebar-content">
                 <div class="tab-content active" id="letter-content">
                     <div class="treasure-hunt-content">
@@ -66,8 +66,8 @@
                 </div>
                 
                 <div class="tab-content" id="maps-content">
-                    <h4 class="maps-title" data-puzzle-lang="mwt">Na-hap yon̄ vētēl</h4>
-                    <h4 class="maps-title" data-puzzle-lang="adv" style="display: none;">Cartographic.References</h4>
+                    <h4 style="color: #f4f1de; text-align: center; margin-bottom: 20px;" data-puzzle-lang="mwt">Na-hap yon̄ vētēl</h4>
+                    <h4 style="color: #f4f1de; text-align: center; margin-bottom: 20px; display: none;" data-puzzle-lang="adv">Cartographic.References</h4>
                     
                     <div class="map-container">
                         <div class="placeholder" data-puzzle-lang="mwt">
@@ -108,7 +108,7 @@
                 <div class="language-controls">
                     <div class="language-switch">
                         <label>Story Language:</label>
-                        <div class="switch">
+                        <div class="switch" onclick="toggleStoryLanguage()">
                             <input type="checkbox" id="storyLang">
                             <span class="slider"></span>
                         </div>
@@ -120,7 +120,7 @@
                     
                     <div class="language-switch">
                         <label>Puzzle Language:</label>
-                        <div class="switch">
+                        <div class="switch" onclick="togglePuzzleLanguage()">
                             <input type="checkbox" id="puzzleLang">
                             <span class="slider"></span>
                         </div>
@@ -148,15 +148,70 @@
                     <div class="comic-panel">
                         <img src="images/1-1. Greeting.png" 
                              alt="Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach"
-                             class="comic-image">
-                        <div class="placeholder comic-fallback">
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
                             [Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach - replace with your actual comic panel]
                         </div>
                     </div>
                 </div>
 
-                <!-- Additional story elements continue... -->
-                <!-- I'll include the key interactive elements -->
+                <div class="story-element">
+                    <div class="narration" data-story-lang="en">
+                        <p>Vetea had read the letter. It described seven mystic stones hidden across the islands of Vanuatu, along with cryptic directions to find them. Three matched the description of stones once discovered by his grandfather Kaikoa—mysterious, glimmering relics etched with unexplainable patterns.</p>
+                        <p>According to the letter, the author—a Mwotlap traveler—had scattered the stones across Vanuatu, turning their hiding places into a game, and leaving clues behind for those curious enough to follow.</p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>維提亞讀了這封信。信中描述了隱藏在瓦努阿圖各島嶼上的七顆神秘寶石，以及尋找它們的神秘指示。其中三顆符合他祖父卡伊科阿曾經發現的石頭描述——神秘的、閃閃發光的遺物，刻著無法解釋的圖案。</p>
+                        <p>根據信中所述，作者——一位莫特拉普語的旅行者——將這些石頭散布在瓦努阿圖各地，將它們的藏身之處變成了一個遊戲，為那些足夠好奇的人留下了線索。</p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="comic-panel">
+                        <img src="path/to/your/comic2.jpg" 
+                             alt="Comic Panel 2: Kaikoa showing them the watchtower"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
+                            [Comic Panel 2: Kaikoa showing them the watchtower - "Gēn van hag!" - replace with your actual comic panel]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="narration" data-story-lang="en">
+                        <p>Now, with mystery calling and clues in hand, David joined Vetea on a journey into the heart of the Pacific—chasing legends, decoding directions, and hunting for the lost Seven Mystic Stones. The incredible journey started with Kaikoa showing them around from his watchtower, pointing out landmarks and the locations where he had discovered the first three stones.</p>
+                        <p>But fate had other plans...</p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>現在，帶著神秘的召喚和手中的線索，大衛與維提亞一起踏上了深入太平洋心臟地帶的旅程——追尋傳說、解碼方向、尋找失落的七顆神秘寶石。這段不可思議的旅程始於卡伊科阿從他的瞭望塔帶領他們參觀，指出地標和他發現前三顆石頭的位置。</p>
+                        <p>但命運另有安排...</p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="comic-panel">
+                        <img src="path/to/your/comic3.jpg" 
+                             alt="Comic Panel 3: The tragic accident - Vetea shouting"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
+                            [Comic Panel 3: The tragic accident - Vetea shouting "That's not what yow means here!" as he throws himself toward the bomb - replace with your actual comic panel]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="narration" data-story-lang="en">
+                        <p>During their search on Happy Island, David mistakenly dug under the wrong rock, triggering an explosive device. Vetea immediately recognized the countdown beeps and realized it was planted by the puzzle creator to eliminate wrong choices. In panic, he yelled "That's not what yow means here!" and threw himself at David to push him away, landing on the bomb himself.</p>
+                        <p>The explosion sent Vetea into a coma. Now David faces the remaining challenges alone, with only his fragmentary knowledge of Mwotlap directional systems to guide him.</p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>在快樂島的搜尋過程中，大衛錯誤地在錯誤的石頭下挖掘，觸發了一個爆炸裝置。維提亞立即識別出倒數計時的嗶嗶聲，意識到這是謎題創作者設置的，用來淘汰錯誤選擇的人。在恐慌中，他大喊「yow在這裡不是那個意思！」並撲向大衛想要推開他，結果自己落在了炸彈上。</p>
+                        <p>爆炸使維提亞陷入昏迷。現在大衛必須獨自面對剩下的挑戰，只能依靠他對莫特拉普語方向系統的片段知識來指引他。</p>
+                    </div>
+                </div>
 
                 <div class="story-element">
                     <div class="challenge-box" data-puzzle-lang="mwt">
@@ -172,35 +227,135 @@
                 </div>
 
                 <div class="story-element">
-                    <div class="challenge-box answer-section-container">
-                        <h3>🔓 Answer Keys & Solutions</h3>
-                        <p class="answer-button-container">
-                            <button class="answer-toggle-btn">
+                    <div class="narration" data-story-lang="en">
+                        <p>Even knowing that this quest doesn't allow mistakes, David picks up the letter and maps, determined to solve the puzzle for the other huts. He must use the Mwotlap directional clues to determine the correct positions of huts A, B, and C relative to the chapel.</p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>即使知道這個任務不允許犯錯，大衛還是拿起信件和地圖，決心要解決其他小屋的謎題。他必須使用莫特拉普語的方向線索來確定小屋A、B和C相對於教堂的正確位置。</p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="challenge-box" data-puzzle-lang="mwt">
+                        <h3>Challenge 2: Sok n-ēm̄ su ABC</h3>
+                        <p>Na-tbēq gēn aē:</p>
+                        <div class="mwotlap-text">
+                            <p>N-ēm̄ su A tog tô lok hag l-ēm̄ yon̄. N-ēm̄ yon tog tô lok hōw l-ēm̄ su A.<br>
+                            N-ēm̄ su B tog tô lok yow l-ēm̄ yon̄. N-ēm̄ yon tog tô lok hay l-ēm̄ su B.<br>
+                            N-ēm̄ su C tog tô lok hōw l-ēm̄ su B. N-ēm̄ su B tog tô lok hag l-ēm̄ su C.</p>
+                        </div>
+                        <p>Qele tateh nēk so van-dēmdēm na-tqoy "lok" gēn? Na-lēk spatial relation aē qele liwo?</p>
+                    </div>
+                    <div class="challenge-box" data-puzzle-lang="adv" style="display: none;">
+                        <h3>Challenge 2: Map the Hut Constellation</h3>
+                        <p>Using advanced Mwotlap spatial construction patterns with <strong>mediate reference</strong> (lok + directional), decode the relative positions:</p>
+                        <div class="mwotlap-text">
+                            <p>Hut A is 'hag'-ward of chapel; chapel is 'hōw'-ward of Hut A<br>
+                            Hut B is 'yow'-ward of chapel; chapel is 'hay'-ward of Hut B<br>
+                            Hut C is 'hōw'-ward of Hut B; Hut B is 'hag'-ward of Hut C</p>
+                        </div>
+                        <p><em>Advanced analysis required: Apply understanding of reciprocal spatial relationships and directional systems to create accurate positioning map.</em></p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="narration" data-story-lang="en">
+                        <p>This time, David can't find any totem poles near the huts - the residents seem to have removed them. So he decides to ask the residents directly, using his painting skills to illustrate each hut and then asking which one had a totem pole in the correct location.</p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>這一次，大衛在小屋附近找不到任何圖騰柱——居民們似乎已經移除了它們。所以他決定直接詢問居民，利用他的繪畫技巧來描繪每個小屋，然後詢問哪一個在正確位置有圖騰柱。</p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="comic-panel">
+                        <img src="path/to/your/comic4.jpg" 
+                             alt="Comic Panel 4: David asking residents about the totem poles"
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="placeholder" style="display: none;">
+                            [Comic Panel 4: David showing his drawings to the Happy Island residents and asking about the totem poles - replace with your actual comic panel]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="challenge-box" data-puzzle-lang="mwt">
+                        <h3>Challenge 3: Qele tateh David so ni-visa?</h3>
+                        <p>David so teyhē so ni-visa ige: "Mey ave n-ēm̄ su, na-han̄ ēm̄ ne-vet aē yow l-ēm̄ ōk?"</p>
+                        <p>Ba nēk m-et so mat qele ave na-tbēq spatial construction gēn aē no-qon? Qele tateh nēk so tēy na-visa mwotlap tateh aē?</p>
+                        <p><em>Van lep: Na-lēk existential predicate wa interrogative construction patterns.</em></p>
+                    </div>
+                    <div class="challenge-box" data-puzzle-lang="adv" style="display: none;">
+                        <h3>Challenge 3: Formulate the Critical Question</h3>
+                        <p>David needs to ask: "Which hut has a rock/totem pole on its 'yow' side?"</p>
+                        <p>Construct this question using proper Mwotlap syntax, considering:</p>
+                        <ul style="text-align: left; margin: 15px 0;">
+                            <li><strong>Interrogative formation</strong> with "mey ave" (which one)</li>
+                            <li><strong>Existential/possessive construction</strong> patterns</li>
+                            <li><strong>Spatial relation encoding</strong> with locative prefixes</li>
+                            <li><strong>Mediate reference systems</strong> for relative positioning</li>
+                        </ul>
+                        <p><em>Advanced Challenge: Your answer should demonstrate mastery of Mwotlap morphosyntactic patterns beyond basic directional vocabulary.</em></p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="narration" data-story-lang="en">
+                        <p>With the residents' help and his growing understanding of Mwotlap spatial systems, David finally solves the puzzle and finds the location of Stone E. The treasure hunt continues, but now he carries not just the weight of the remaining stones to find, but also the hope that Vetea will recover to see their quest completed.</p>
+                        <p style="text-align: center; margin-top: 30px;">
+                            <strong>The adventure continues, but the linguistic puzzles end here...</strong>
+                        </p>
+                    </div>
+                    <div class="narration chinese-text" data-story-lang="zh" style="display: none;">
+                        <p>在居民的幫助和他對莫特拉普語空間系統的不斷理解下，大衛終於解開了謎題，找到了寶石E的位置。尋寶之旅還在繼續，但現在他不僅承載著尋找剩餘寶石的重任，也承載著維提亞能夠康復並看到他們任務完成的希望。</p>
+                        <p style="text-align: center; margin-top: 30px;">
+                            <strong>冒險還在繼續，但語言學謎題到此結束...</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-element">
+                    <div class="challenge-box" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); border-color: #16a085;">
+                        <h3 style="color: white;">🔓 Answer Keys & Solutions</h3>
+                        <p style="text-align: center;">
+                            <button onclick="showAnswers()" style="
+                                background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+                                border: none;
+                                color: white;
+                                padding: 15px 30px;
+                                font-size: 1.2em;
+                                border-radius: 30px;
+                                cursor: pointer;
+                                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease;
+                                font-weight: bold;
+                            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                                 🗝️ Reveal Answer Keys
                             </button>
                         </p>
-                        <div id="answer-section" class="answer-content">
+                        <div id="answer-section" style="display: none; margin-top: 25px; padding-top: 25px; border-top: 2px solid rgba(255, 255, 255, 0.3);">
                             <div data-puzzle-lang="mwt">
-                                <h4>Na-tbēq ōk:</h4>
-                                <div class="answer-item">
+                                <h4 style="color: white; margin-bottom: 15px;">Na-tbēq ōk:</h4>
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 1:</strong> "Yow" aē directional geocentric (seawards) ba deictic context aē different. Vetea m-et so teytey ave David m-et so van-tamat "yow" aē absolute direction ba no local/relative position.</p>
                                 </div>
-                                <div class="answer-item">
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 2:</strong> Na-map spatial relations: Chapel tog center, Hut A tog hag (east), Hut B tog yow (seawards), Hut C tog between B wa chapel lok hōw.</p>
                                 </div>
-                                <div class="answer-item">
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 3:</strong> "Mey ave n-ēm̄ su, na-han̄ ēm̄ ne-vet aē yow l-ēm̄ ōk?" (Which hut has a stone/totem on its yow side?)</p>
                                 </div>
                             </div>
                             <div data-puzzle-lang="adv" style="display: none;">
-                                <h4>Analytical Solutions:</h4>
-                                <div class="answer-item">
+                                <h4 style="color: white; margin-bottom: 15px;">Analytical Solutions:</h4>
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 1:</strong> Geocentric vs. deictic directional interpretation. "Yow" functions as absolute geocentric reference (seawards) in letter context but requires deictic/relative interpretation at local scale on Happy Island.</p>
                                 </div>
-                                <div class="answer-item">
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 2:</strong> Mediate reference system analysis: lok + directional creates reciprocal spatial relationships. Solution requires mapping all constraints simultaneously to determine unique hut constellation.</p>
                                 </div>
-                                <div class="answer-item">
+                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
                                     <p><strong>Challenge 3:</strong> Morphosyntactic construction: [mey ave] + [n-ēm̄ su] + [existential predicate] + [spatial locative]. Demonstrates mastery of interrogative + possessive + spatial systems.</p>
                                 </div>
                             </div>
