@@ -490,6 +490,66 @@ input:checked + .slider:before {
     display: none;
 }
 
+/* Inline comic styles */
+.inline-comic {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    padding: 5px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 200px;
+    transition: all 0.3s ease;
+}
+
+.inline-comic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.inline-comic .comic-image {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.inline-comic .comic-placeholder {
+    font-size: 0.8em;
+    color: #8b4513;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Individual answer section styling */
+.answer-content {
+    display: none;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.answer-content.show {
+    display: block;
+}
+
+.answer-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border-left: 4px solid rgba(255, 255, 255, 0.3);
+}
+
 /* Challenge box styles */
 .challenge-box {
     background: 
