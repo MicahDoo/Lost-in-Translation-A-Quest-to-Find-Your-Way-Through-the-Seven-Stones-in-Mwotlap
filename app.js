@@ -172,23 +172,6 @@ class MwotlapTreasureHunt {
         }
     }
 
-    toggleAnswers(button) {
-        const answerSection = document.getElementById('answer-section');
-        if (!answerSection) return;
-        
-        const isHidden = answerSection.style.display === 'none';
-        
-        if (isHidden) {
-            answerSection.style.display = 'block';
-            button.innerHTML = '🔒 Hide Answer Keys';
-            button.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
-        } else {
-            answerSection.style.display = 'none';
-            button.innerHTML = '🗝️ Reveal Answer Keys';
-            button.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
-        }
-    }
-
     // Utility methods for future expansion
     getCurrentStoryLanguage() {
         return this.storyLanguage;
@@ -249,11 +232,5 @@ function toggleStoryLanguage() {
 function togglePuzzleLanguage() {
     if (window.treasureHuntApp) {
         window.treasureHuntApp.togglePuzzleLanguage();
-    }
-}
-
-function showAnswers() {
-    if (window.treasureHuntApp) {
-        window.treasureHuntApp.toggleAnswers(event.target);
     }
 }
