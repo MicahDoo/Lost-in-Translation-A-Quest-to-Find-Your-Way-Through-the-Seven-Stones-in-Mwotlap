@@ -482,8 +482,8 @@ input:checked + .slider:before {
 
 .speech-bubble {
     position: absolute;
-    top: 0%;
-    left: 0%;
+    top: 10%;
+    left: 40%;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 20px;
     padding: 10px;
