@@ -153,6 +153,25 @@ class MwotlapTreasureHunt {
         }
     }
 
+    toggleAnswer(button, targetId) {
+        const answerContent = document.getElementById(targetId);
+        if (!answerContent) return;
+        
+        const isHidden = answerContent.style.display === 'none' || answerContent.style.display === '';
+        
+        if (isHidden) {
+            answerContent.style.display = 'block';
+            answerContent.classList.add('show');
+            button.innerHTML = '🔒 Hide Answer';
+            button.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
+        } else {
+            answerContent.style.display = 'none';
+            answerContent.classList.remove('show');
+            button.innerHTML = '🗝️ Reveal Answer';
+            button.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
+        }
+    }
+
     toggleAnswers(button) {
         const answerSection = document.getElementById('answer-section');
         if (!answerSection) return;
