@@ -10,17 +10,17 @@
     <div class="main-container">
         <div class="sidebar" id="sidebar">
             <div class="bookmark-tabs">
-                <button class="tab-trigger active" onclick="showTab('letter')" data-tab="letter">
+                <button class="tab-trigger active" data-tab="letter">
                     <span class="tab-icon">🗞️</span>
                     <span class="tab-text">LETTER</span>
                 </button>
-                <button class="tab-trigger" onclick="showTab('maps')" data-tab="maps">
+                <button class="tab-trigger" data-tab="maps">
                     <span class="tab-icon">🗺️</span>
                     <span class="tab-text">MAPS</span>
                 </button>
             </div>
             
-            <button class="close-sidebar" onclick="closeSidebar()">&times;</button>
+            <button class="close-sidebar">&times;</button>
             <div class="sidebar-content">
                 <div class="tab-content active" id="letter-content">
                     <div class="treasure-hunt-content">
@@ -66,8 +66,8 @@
                 </div>
                 
                 <div class="tab-content" id="maps-content">
-                    <h4 style="color: #f4f1de; text-align: center; margin-bottom: 20px;" data-puzzle-lang="mwt">Na-hap yon̄ vētēl</h4>
-                    <h4 style="color: #f4f1de; text-align: center; margin-bottom: 20px; display: none;" data-puzzle-lang="adv">Cartographic.References</h4>
+                    <h4 class="maps-title" data-puzzle-lang="mwt">Na-hap yon̄ vētēl</h4>
+                    <h4 class="maps-title" data-puzzle-lang="adv" style="display: none;">Cartographic.References</h4>
                     
                     <div class="map-container">
                         <div class="placeholder" data-puzzle-lang="mwt">
@@ -108,7 +108,7 @@
                 <div class="language-controls">
                     <div class="language-switch">
                         <label>Story Language:</label>
-                        <div class="switch" onclick="toggleStoryLanguage()">
+                        <div class="switch">
                             <input type="checkbox" id="storyLang">
                             <span class="slider"></span>
                         </div>
@@ -120,7 +120,7 @@
                     
                     <div class="language-switch">
                         <label>Puzzle Language:</label>
-                        <div class="switch" onclick="togglePuzzleLanguage()">
+                        <div class="switch">
                             <input type="checkbox" id="puzzleLang">
                             <span class="slider"></span>
                         </div>
@@ -148,9 +148,8 @@
                     <div class="comic-panel">
                         <img src="images/1-1. Greeting.png" 
                              alt="Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach"
-                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="placeholder" style="display: none;">
+                             class="comic-image">
+                        <div class="placeholder comic-fallback">
                             [Comic Panel 1: David finding the mysterious bottle on a Taiwanese beach - replace with your actual comic panel]
                         </div>
                     </div>
@@ -171,9 +170,8 @@
                     <div class="comic-panel">
                         <img src="path/to/your/comic2.jpg" 
                              alt="Comic Panel 2: Kaikoa showing them the watchtower"
-                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="placeholder" style="display: none;">
+                             class="comic-image">
+                        <div class="placeholder comic-fallback">
                             [Comic Panel 2: Kaikoa showing them the watchtower - "Gēn van hag!" - replace with your actual comic panel]
                         </div>
                     </div>
@@ -194,9 +192,8 @@
                     <div class="comic-panel">
                         <img src="path/to/your/comic3.jpg" 
                              alt="Comic Panel 3: The tragic accident - Vetea shouting"
-                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="placeholder" style="display: none;">
+                             class="comic-image">
+                        <div class="placeholder comic-fallback">
                             [Comic Panel 3: The tragic accident - Vetea shouting "That's not what yow means here!" as he throws himself toward the bomb - replace with your actual comic panel]
                         </div>
                     </div>
@@ -271,9 +268,8 @@
                     <div class="comic-panel">
                         <img src="path/to/your/comic4.jpg" 
                              alt="Comic Panel 4: David asking residents about the totem poles"
-                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="placeholder" style="display: none;">
+                             class="comic-image">
+                        <div class="placeholder comic-fallback">
                             [Comic Panel 4: David showing his drawings to the Happy Island residents and asking about the totem poles - replace with your actual comic panel]
                         </div>
                     </div>
@@ -316,46 +312,35 @@
                 </div>
 
                 <div class="story-element">
-                    <div class="challenge-box" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); border-color: #16a085;">
-                        <h3 style="color: white;">🔓 Answer Keys & Solutions</h3>
-                        <p style="text-align: center;">
-                            <button onclick="showAnswers()" style="
-                                background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-                                border: none;
-                                color: white;
-                                padding: 15px 30px;
-                                font-size: 1.2em;
-                                border-radius: 30px;
-                                cursor: pointer;
-                                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-                                transition: all 0.3s ease;
-                                font-weight: bold;
-                            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <div class="challenge-box answer-section-container">
+                        <h3>🔓 Answer Keys & Solutions</h3>
+                        <p class="answer-button-container">
+                            <button class="answer-toggle-btn">
                                 🗝️ Reveal Answer Keys
                             </button>
                         </p>
-                        <div id="answer-section" style="display: none; margin-top: 25px; padding-top: 25px; border-top: 2px solid rgba(255, 255, 255, 0.3);">
+                        <div id="answer-section" class="answer-content">
                             <div data-puzzle-lang="mwt">
-                                <h4 style="color: white; margin-bottom: 15px;">Na-tbēq ōk:</h4>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <h4>Na-tbēq ōk:</h4>
+                                <div class="answer-item">
                                     <p><strong>Challenge 1:</strong> "Yow" aē directional geocentric (seawards) ba deictic context aē different. Vetea m-et so teytey ave David m-et so van-tamat "yow" aē absolute direction ba no local/relative position.</p>
                                 </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <div class="answer-item">
                                     <p><strong>Challenge 2:</strong> Na-map spatial relations: Chapel tog center, Hut A tog hag (east), Hut B tog yow (seawards), Hut C tog between B wa chapel lok hōw.</p>
                                 </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <div class="answer-item">
                                     <p><strong>Challenge 3:</strong> "Mey ave n-ēm̄ su, na-han̄ ēm̄ ne-vet aē yow l-ēm̄ ōk?" (Which hut has a stone/totem on its yow side?)</p>
                                 </div>
                             </div>
                             <div data-puzzle-lang="adv" style="display: none;">
-                                <h4 style="color: white; margin-bottom: 15px;">Analytical Solutions:</h4>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <h4>Analytical Solutions:</h4>
+                                <div class="answer-item">
                                     <p><strong>Challenge 1:</strong> Geocentric vs. deictic directional interpretation. "Yow" functions as absolute geocentric reference (seawards) in letter context but requires deictic/relative interpretation at local scale on Happy Island.</p>
                                 </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <div class="answer-item">
                                     <p><strong>Challenge 2:</strong> Mediate reference system analysis: lok + directional creates reciprocal spatial relationships. Solution requires mapping all constraints simultaneously to determine unique hut constellation.</p>
                                 </div>
-                                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin: 10px 0;">
+                                <div class="answer-item">
                                     <p><strong>Challenge 3:</strong> Morphosyntactic construction: [mey ave] + [n-ēm̄ su] + [existential predicate] + [spatial locative]. Demonstrates mastery of interrogative + possessive + spatial systems.</p>
                                 </div>
                             </div>
