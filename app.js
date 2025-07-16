@@ -48,10 +48,13 @@ class MwotlapTreasureHunt {
             });
         }
 
-        // Answer reveal button
-        document.querySelector('.answer-toggle-btn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.toggleAnswers(e.target);
+        // Answer reveal buttons - individual toggles
+        document.querySelectorAll('.answer-toggle-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+                this.toggleAnswer(button, targetId);
+            });
         });
     }
 
