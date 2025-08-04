@@ -1,12 +1,13 @@
 /**
  * Mwotlap Treasure Hunt - Application Logic
- * Separated from HTML for better maintainability
+ * Enhanced with JSON-based story rendering
  */
 
 class MwotlapTreasureHunt {
     constructor() {
         this.storyLanguage = 'en';
         this.puzzleLanguage = 'mwt';
+        this.storyRenderer = null;
         this.init();
     }
 
@@ -14,6 +15,26 @@ class MwotlapTreasureHunt {
         this.setupEventListeners();
         this.updateLanguageLabels('story', false);
         this.updateLanguageLabels('puzzle', false);
+        
+        // Initialize story renderer if data is available
+        if (typeof storyData !== 'undefined') {
+            this.storyRenderer = new StoryRenderer(storyData);
+            this.renderStoryContent();
+        }
+    }
+
+    renderStoryContent() {
+        if (!this.storyRenderer) return;
+        
+        const container = document.getElementById('story-container');
+        if (container) {
+            // Show loading message briefly
+            setTimeout(() => {
+                container.innerHTML = this.storyRenderer.renderAllContent();
+                this.storyRenderer.initializeSpeechBubbles();
+                this.storyRenderer.initializeAnswerButtons();
+            }, 100);
+        }
     }
 
     setupEventListeners() {
@@ -48,7 +69,7 @@ class MwotlapTreasureHunt {
             });
         }
 
-        // Answer reveal buttons - use event delegation
+        // Answer reveal buttons - use event delegation for dynamically generated content
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('answer-toggle-btn')) {
                 e.preventDefault();
@@ -103,7 +124,14 @@ class MwotlapTreasureHunt {
         
         console.log('Story toggle clicked! New language:', newLang);
         
-        this.switchLanguageElements(this.storyLanguage, newLang, 'data-story-lang');
+        // Update with JSON renderer if available
+        if (this.storyRenderer) {
+            this.storyRenderer.updateLanguage('story', newLang);
+        } else {
+            // Fallback to old method
+            this.switchLanguageElements(this.storyLanguage, newLang, 'data-story-lang');
+        }
+        
         this.storyLanguage = newLang;
         this.updateLanguageLabels('story', checkbox.checked);
     }
@@ -117,7 +145,14 @@ class MwotlapTreasureHunt {
         
         console.log('Puzzle toggle clicked! New language:', newLang);
         
-        this.switchLanguageElements(this.puzzleLanguage, newLang, 'data-puzzle-lang');
+        // Update with JSON renderer if available
+        if (this.storyRenderer) {
+            this.storyRenderer.updateLanguage('puzzle', newLang);
+        } else {
+            // Fallback to old method
+            this.switchLanguageElements(this.puzzleLanguage, newLang, 'data-puzzle-lang');
+        }
+        
         this.puzzleLanguage = newLang;
         this.updateLanguageLabels('puzzle', checkbox.checked);
     }
@@ -192,9 +227,14 @@ class MwotlapTreasureHunt {
         if (storyCheckbox) storyCheckbox.checked = false;
         if (puzzleCheckbox) puzzleCheckbox.checked = false;
         
-        // Reset displays
-        this.switchLanguageElements('zh', 'en', 'data-story-lang');
-        this.switchLanguageElements('adv', 'mwt', 'data-puzzle-lang');
+        // Reset with renderer or fallback
+        if (this.storyRenderer) {
+            this.storyRenderer.updateLanguage('story', 'en');
+            this.storyRenderer.updateLanguage('puzzle', 'mwt');
+        } else {
+            this.switchLanguageElements('zh', 'en', 'data-story-lang');
+            this.switchLanguageElements('adv', 'mwt', 'data-puzzle-lang');
+        }
         
         // Reset labels
         this.updateLanguageLabels('story', false);
