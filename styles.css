@@ -455,6 +455,7 @@ input:checked + .slider:before {
     text-align: center;
     padding: 10px; /* Add padding for breathing room */
     vertical-align: top; /* Align tops when side by side */
+    transform-origin: center center; /* Set transform origin for scaling */
 }
 
 /* Comic panel with hover effects */
@@ -471,11 +472,14 @@ input:checked + .slider:before {
     
     /* Fade-in animation when comics first load */
     animation: comicFadeIn 0.6s ease-out;
+    
+    /* Set transform origin for proper scaling */
+    transform-origin: center center;
 }
 
 .comic-panel:hover {
-    /* Scale up slightly on hover */
-    transform: scale(1.05);
+    /* This hover effect is now handled by the container */
+    transform: none;
     /* Enhanced shadow on hover */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
     /* Border color change on hover */
@@ -608,10 +612,12 @@ div .inline-comic {
         0 0 4px rgba(255, 255, 255, 0.9);
 }
 
-/* Make speech bubbles scale with the comic on hover */
-.scene-comic:hover .speech-bubble-overlay {
-    /* Speech bubbles scale along with the comic */
+/* Make the entire comic container (image + speech bubbles) scale together */
+.scene-comic:hover,
+.inline-comic:hover {
+    /* Scale the entire container, which includes both image and speech bubbles */
     transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 /* Additional accessibility improvements */
