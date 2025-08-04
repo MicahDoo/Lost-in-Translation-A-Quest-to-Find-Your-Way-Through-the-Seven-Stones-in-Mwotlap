@@ -1,5 +1,5 @@
 /**
- * Mwotlap Treasure Hunt - Styles
+ * Mwotlap Treasure Hunt - Updated Styles with Transparent Speech Bubbles
  * Separated from HTML for better maintainability
  */
 
@@ -446,62 +446,71 @@ input:checked + .slider:before {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
-/* Add this to your styles.css to fix speech bubble positioning */
-
-/* Make comic containers relative for absolute positioning of speech bubbles */
+/* Comic panel and speech bubble overlay styles */
 .scene-comic,
 .inline-comic {
     position: relative;
     display: inline-block;
-}
-
-/* Fix the speech bubble positioning */
-.speech-bubble {
-    position: absolute;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 16px;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #2c1810;
-    border: 2px solid #2c1810;
-    border-radius: 15px;
+    margin: 20px auto;
     text-align: center;
-    line-height: 1.3;
-    pointer-events: none;
+}
+
+.comic-panel {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 3px solid #8b4513;
+}
+
+.comic-placeholder {
+    display: inline-block;
+    padding: 50px;
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.9) 0%, rgba(210, 180, 140, 0.9) 100%);
+    border: 3px dashed #cd853f;
+    border-radius: 15px;
+    color: #8b4513;
+    font-style: italic;
+    text-align: center;
+    min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Transparent speech bubble overlays */
+.speech-bubble-overlay {
+    position: absolute;
+    background-color: transparent;
+    cursor: help;
+    transition: all 0.3s ease;
+    z-index: 5;
+    border-radius: 8px;
+}
+
+/* Optional hover effect for development/debugging */
+.speech-bubble-overlay:hover {
+    background-color: rgba(255, 255, 0, 0.1);
+    border: 1px dashed rgba(255, 255, 0, 0.3);
+}
+
+/* For accessibility - screen readers can still access the text via title attribute */
+.speech-bubble-overlay[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
     z-index: 10;
-    max-width: 200px;
-    word-wrap: break-word;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-}
-
-/* Add a speech bubble tail */
-.speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #2c1810;
-}
-
-.speech-bubble::before {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid rgba(255, 255, 255, 0.95);
-    z-index: 1;
+    pointer-events: none;
 }
 
 /* Challenge box styles */
@@ -695,6 +704,26 @@ input:checked + .slider:before {
     font-family: Arial, sans-serif;
 }
 
+/* Loading message styling */
+.loading-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #8b4513;
+    font-style: italic;
+    padding: 50px;
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.5) 0%, rgba(210, 180, 140, 0.5) 100%);
+    border: 2px dashed #cd853f;
+    border-radius: 15px;
+    margin: 20px 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .main-container {
@@ -755,26 +784,32 @@ input:checked + .slider:before {
         width: 60px;
         min-height: 120px;
     }
+    
+    .comic-panel {
+        max-width: 95%;
+    }
+    
+    .speech-bubble-overlay {
+        /* Ensure overlays work properly on mobile */
+        pointer-events: auto;
+    }
 }
 
-
-/* Add this to your styles.css for the loading message */
-
-.loading-message {
-    text-align: center;
-    font-size: 1.2em;
-    color: #8b4513;
-    font-style: italic;
-    padding: 50px;
-    background: 
-        linear-gradient(135deg, rgba(244, 241, 222, 0.5) 0%, rgba(210, 180, 140, 0.5) 100%);
-    border: 2px dashed #cd853f;
-    border-radius: 15px;
-    margin: 20px 0;
-    animation: pulse 2s ease-in-out infinite;
+/* Debug mode styles for development */
+.debug-mode .speech-bubble-overlay {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    border: 2px dashed rgba(255, 0, 0, 0.5) !important;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+.debug-mode .speech-bubble-overlay::before {
+    content: attr(data-bubble-index);
+    position: absolute;
+    top: -20px;
+    left: 2px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
 }
