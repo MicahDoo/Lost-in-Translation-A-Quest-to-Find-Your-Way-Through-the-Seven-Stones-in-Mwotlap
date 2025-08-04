@@ -492,50 +492,77 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     text-align: center;
+    pointer-events: none; /* Allow clicks to pass through to comic below */
 }
 
-/* The actual text inside speech bubbles */
+/* The actual text inside speech bubbles - ALWAYS VISIBLE */
 .speech-text {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    font-size: 16px;
     font-weight: bold;
     color: #2c1810;
-    text-shadow: 
-        1px 1px 0 rgba(255, 255, 255, 0.8),
-        -1px -1px 0 rgba(255, 255, 255, 0.8),
-        1px -1px 0 rgba(255, 255, 255, 0.8),
-        -1px 1px 0 rgba(255, 255, 255, 0.8);
-    line-height: 1.2;
-    word-wrap: break-word;
-    max-width: 100%;
-    padding: 2px;
-}
-
-/* Optional hover effect for development/debugging */
-.speech-bubble-overlay:hover {
-    background-color: rgba(255, 255, 0, 0.1);
-    border: 1px dashed rgba(255, 255, 0, 0.3);
-}
-
-.speech-bubble-overlay:hover .speech-text {
     text-shadow: 
         2px 2px 0 rgba(255, 255, 255, 0.9),
         -2px -2px 0 rgba(255, 255, 255, 0.9),
         2px -2px 0 rgba(255, 255, 255, 0.9),
-        -2px 2px 0 rgba(255, 255, 255, 0.9);
+        -2px 2px 0 rgba(255, 255, 255, 0.9),
+        0 0 3px rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding: 2px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
+
+/* Debug mode hover effects only show the positioning box */
+.speech-bubble-overlay:hover {
+    background-color: rgba(255, 255, 0, 0.1);
+    border: 1px dashed rgba(255, 255, 0, 0.3);
+    pointer-events: auto;
+}
+
+/* Text remains the same on hover - no changes needed */
 
 /* Responsive text sizing */
 @media (max-width: 768px) {
     .speech-text {
-        font-size: 12px;
+        font-size: 14px !important;
     }
 }
 
 @media (max-width: 480px) {
     .speech-text {
-        font-size: 10px;
+        font-size: 12px !important;
     }
+}
+
+/* Override any potential hiding styles */
+.speech-bubble-overlay .speech-text {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+}
+
+/* Debug mode styles for development */
+.debug-mode .speech-bubble-overlay {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    border: 2px dashed rgba(255, 0, 0, 0.8) !important;
+}
+
+.debug-mode .speech-bubble-overlay::before {
+    content: attr(data-bubble-index);
+    position: absolute;
+    top: -25px;
+    left: 2px;
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* For accessibility - screen readers can still access the text via title attribute */
