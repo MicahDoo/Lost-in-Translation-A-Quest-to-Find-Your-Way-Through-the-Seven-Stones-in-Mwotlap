@@ -1,4 +1,4 @@
-// story-data.js - Complete story content for Mwotlap Treasure Hunt
+// story-data.js - Updated with percentage-based transparent speech bubble positioning
 const storyData = {
     scenes: [
         {
@@ -65,7 +65,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "Gēn van hay!",
-                                position: "left-40-top-10"
+                                left: 40,
+                                top: 10,
+                                width: 20,
+                                height: 8
                             }
                         ]
                     }
@@ -86,7 +89,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "Gēn van hay!",
-                                position: "left-40-top-10"
+                                left: 40,
+                                top: 10,
+                                width: 20,
+                                height: 8
                             }
                         ]
                     }
@@ -112,7 +118,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "Gēn van hag!",
-                                position: "center-50-top-15"
+                                left: 30,
+                                top: 15,
+                                width: 25,
+                                height: 10
                             }
                         ]
                     },
@@ -137,7 +146,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "Gēn van hag!",
-                                position: "center-50-top-15"
+                                left: 30,
+                                top: 15,
+                                width: 25,
+                                height: 10
                             }
                         ]
                     },
@@ -171,7 +183,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "That's not what yow means here!",
-                                position: "right-30-top-20"
+                                left: 55,
+                                top: 20,
+                                width: 35,
+                                height: 12
                             }
                         ]
                     },
@@ -196,7 +211,10 @@ const storyData = {
                         speechBubbles: [
                             {
                                 text: "yow在這裡不是那個意思！",
-                                position: "right-30-top-20"
+                                left: 55,
+                                top: 20,
+                                width: 35,
+                                height: 12
                             }
                         ]
                     },
