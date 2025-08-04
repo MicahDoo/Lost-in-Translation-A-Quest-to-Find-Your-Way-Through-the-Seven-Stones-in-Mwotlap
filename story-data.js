@@ -11,7 +11,25 @@ const storyData = {
                 en: [
                     {
                         type: "paragraph",
-                        text: "It all began with a bottle washed ashore. David, a travel blogger drawn to the unexpected, found it half-buried in the sand on a remote Taiwanese beach months ago. Inside was a letter—weathered, sun-bleached, and written in a language he couldn't recognize."
+                        text: "It all began with a bottle washed ashore.
+                            David, a travel blogger drawn to the unexpected, found it half-buried in the sand months ago at a remote Taiwanese beach. 
+                            Inside was a letter—weathered, sun-bleached, and written in a language he couldn’t recognize. 
+                            Years later, he showed this letter to a new friend, and to his surprise, this new friend could read most of it."
+                    },
+                    {
+                        type: "paragraph",
+                        text: This new friend is Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava. 
+                            He read the letter, which is written in his exact language, Mwotlap. It described seven mystic stones hidden across the islands, along with directions to find them. 
+                            Three matched the description of stones once discovered by his grandfather—mysterious, glimmering relics etched with unexplainable patterns.
+                            According to the letter, the author—a Mwotlap traveler—had scattered the stones across Vanuatu, turning their hiding places into a game, and leaving clues behind for those curious enough to follow.
+                            \nNow, with mystery calling and clues in hand, David joins Vetea on a journey into the heart of the Pacific—chasing legends, decoding directions, and hunting for the lost Seven Mystic Stones."
+                    },
+                    {
+                        type: "paragraph",
+                        text: "But fate had other plans.
+                            Some time into their search, Vetea was injured in an accident and has been in a coma ever since.\n
+                            Knowing time isn’t on his side–and suspecting that others who saw the letter online might also be after the stones–David decides to press on alone. His only clues? The cryptic letter, the paths they’ve travelled (now carefully marked on his map), and his past interactions with Vetea’s grandfather, Kaikoa.
+                            Trying to recall as many details as he can about the language and the clues, David’s memory drifts back to the beginning of their journey–to Motalava, where Mwotlap is primarily spoken, and to Kaikoa’s warm welcome that first set everything in motion."
                     },
                     {
                         type: "comic",
@@ -20,8 +38,22 @@ const storyData = {
                         speechBubbles: []
                     },
                     {
+                        type: "comic",
+                        image: "images/1-2. Come inland.png",
+                        alt: "Kaikoa gestures them inland",
+                        speechBubbles: [
+                            {
+                                text: "Gēn van hay!",
+                                left: 55,
+                                top: 7,
+                                width: 23,
+                                height: 10
+                            }
+                        ]
+                    },
+                    {
                         type: "paragraph",
-                        text: "He turned to Reddit for help. Weeks passed. Then months. Just when he was ready to give up, a message finally arrived from Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava."
+                        text: "The incredible journey started with Kaikoa showing them around."
                     }
                 ],
                 zh: [
@@ -38,63 +70,6 @@ const storyData = {
                     {
                         type: "paragraph",
                         text: "他向Reddit求助。幾週過去了，然後是幾個月。就在他準備放棄的時候，終於收到了一條訊息，來自瓦努阿圖的年輕人維提亞，他會說莫特拉普語——一種只有約2000人在莫塔拉瓦島上使用的語言。"
-                    }
-                ]
-            }
-        },
-        {
-            id: "letter-contents",
-            title: {
-                en: "The Letter",
-                zh: "信件"
-            },
-            content: {
-                en: [
-                    {
-                        type: "paragraph",
-                        text: "Vetea had read the letter. It described seven mystic stones hidden across the islands of Vanuatu, along with cryptic directions to find them. Three matched the description of stones once discovered by his grandfather Kaikoa—mysterious, glimmering relics etched with unexplainable patterns."
-                    },
-                    {
-                        type: "paragraph",
-                        text: "According to the letter, the author—a Mwotlap traveler—had scattered the stones across Vanuatu, turning their hiding places into a game, and leaving clues behind for those curious enough to follow."
-                    },
-                    {
-                        type: "comic",
-                        image: "images/1-2. Come inland.png",
-                        alt: "Kaikoa gestures them inland",
-                        speechBubbles: [
-                            {
-                                text: "Gēn van hay!",
-                                left: 40,
-                                top: 10,
-                                width: 20,
-                                height: 8
-                            }
-                        ]
-                    }
-                ],
-                zh: [
-                    {
-                        type: "paragraph",
-                        text: "維提亞讀了這封信。信中描述了隱藏在瓦努阿圖各島嶼上的七顆神秘寶石，以及尋找它們的神秘指示。其中三顆符合他祖父卡伊科阿曾經發現的石頭描述——神秘的、閃閃發光的遺物，刻著無法解釋的圖案。"
-                    },
-                    {
-                        type: "paragraph",
-                        text: "根據信中所述，作者——一位莫特拉普語的旅行者——將這些石頭散布在瓦努阿圖各地，將它們的藏身之處變成了一個遊戲，為那些足夠好奇的人留下了線索。"
-                    },
-                    {
-                        type: "comic",
-                        image: "images/1-2. Come inland.png",
-                        alt: "卡伊科阿手勢引導他們內陸",
-                        speechBubbles: [
-                            {
-                                text: "Gēn van hay!",
-                                left: 40,
-                                top: 10,
-                                width: 20,
-                                height: 8
-                            }
-                        ]
                     }
                 ]
             }
