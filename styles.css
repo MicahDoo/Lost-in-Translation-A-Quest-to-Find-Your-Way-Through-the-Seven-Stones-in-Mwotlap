@@ -458,7 +458,7 @@ input:checked + .slider:before {
     transform-origin: center center; /* Set transform origin for scaling */
 }
 
-/* Comic panel with hover effects */
+/* Comic panel without hover effects */
 .comic-panel {
     max-width: 100%;
     height: auto;
@@ -466,24 +466,11 @@ input:checked + .slider:before {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border: 3px solid #8b4513;
     
-    /* Add smooth transition for hover effect */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Shows it's interactive */
-    
     /* Fade-in animation when comics first load */
     animation: comicFadeIn 0.6s ease-out;
     
     /* Set transform origin for proper scaling */
     transform-origin: center center;
-}
-
-.comic-panel:hover {
-    /* This hover effect is now handled by the container */
-    transform: none;
-    /* Enhanced shadow on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    /* Border color change on hover */
-    border-color: #cd853f;
 }
 
 @keyframes comicFadeIn {
@@ -595,30 +582,16 @@ div .inline-comic {
     color: #2c1810;
 }
 
-/* Hover effect for speech bubbles - shows they're interactive */
+/* Remove hover effects from speech bubbles */
 .speech-bubble-overlay:hover {
-    background-color: rgba(255, 255, 255, 0.05); /* Very subtle background on hover */
-    border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle golden border */
+    /* No hover effects */
 }
 
 .speech-bubble-overlay:hover .speech-text {
-    /* Slightly enhance text on hover */
-    background: rgba(255, 255, 255, 0.15);
-    text-shadow: 
-        2px 2px 0 rgba(255, 255, 255, 1),
-        -2px -2px 0 rgba(255, 255, 255, 1),
-        2px -2px 0 rgba(255, 255, 255, 1),
-        -2px 2px 0 rgba(255, 255, 255, 1),
-        0 0 4px rgba(255, 255, 255, 0.9);
+    /* No hover effects on text */
 }
 
-/* Make the entire comic container (image + speech bubbles) scale together */
-.scene-comic:hover,
-.inline-comic:hover {
-    /* Scale the entire container, which includes both image and speech bubbles */
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
+/* Remove container hover effects */
 
 /* Additional accessibility improvements */
 .speech-bubble-overlay:focus-within {
@@ -626,9 +599,8 @@ div .inline-comic {
     outline-offset: 2px;
 }
 
-/* Ensure text remains selectable even when comic panel has hover effects */
-.comic-panel:hover ~ .speech-bubble-overlay .speech-text,
-.comic-panel:hover + .speech-bubble-overlay .speech-text {
+/* Ensure text remains selectable */
+.speech-bubble-overlay .speech-text {
     pointer-events: auto !important;
     user-select: text !important;
 }
@@ -935,11 +907,6 @@ div .inline-comic {
     
     .comic-panel {
         max-width: 95%;
-    }
-    
-    .comic-panel:hover {
-        /* Smaller scale increase on mobile to prevent layout issues */
-        transform: scale(1.03);
     }
     
     .scene-comic,
