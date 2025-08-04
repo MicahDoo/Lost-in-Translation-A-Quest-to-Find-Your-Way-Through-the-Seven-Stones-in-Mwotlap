@@ -1,3 +1,4 @@
+// story-renderer.js - Updated story rendering engine with transparent percentage-based speech bubbles
 class StoryRenderer {
     constructor(storyData) {
         this.data = storyData;
@@ -38,13 +39,15 @@ class StoryRenderer {
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">`;
         html += `<span class="comic-placeholder" style="display: none;">[Comic: ${comicData.alt}]</span>`;
         
-        // Add transparent speech bubble overlays
+        // Add speech bubble overlays with visible text
         comicData.speechBubbles.forEach((bubble, index) => {
             html += `<div class="speech-bubble-overlay" 
                           data-bubble-index="${index}"
                           data-text="${bubble.text}"
                           style="left: ${bubble.left}%; top: ${bubble.top}%; width: ${bubble.width}%; height: ${bubble.height}%;"
-                          title="${bubble.text}"></div>`;
+                          title="${bubble.text}">
+                          <span class="speech-text">${bubble.text}</span>
+                     </div>`;
         });
         
         html += '</div>';
