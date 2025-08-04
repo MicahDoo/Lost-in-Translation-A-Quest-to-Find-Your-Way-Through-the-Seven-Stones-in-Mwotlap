@@ -11,25 +11,25 @@ const storyData = {
                 en: [
                     {
                         type: "paragraph",
-                        text: "It all began with a bottle washed ashore.
+                        text: `It all began with a bottle washed ashore.
                             David, a travel blogger drawn to the unexpected, found it half-buried in the sand months ago at a remote Taiwanese beach. 
                             Inside was a letter—weathered, sun-bleached, and written in a language he couldn’t recognize. 
-                            Years later, he showed this letter to a new friend, and to his surprise, this new friend could read most of it."
+                            Years later, he showed this letter to a new friend, and to his surprise, this new friend could read most of it.`
                     },
                     {
                         type: "paragraph",
-                        text: "This new friend is Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava. 
+                        text: `This new friend is Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava. 
                             He read the letter, which is written in his exact language, Mwotlap. It described seven mystic stones hidden across the islands, along with directions to find them. 
                             Three matched the description of stones once discovered by his grandfather—mysterious, glimmering relics etched with unexplainable patterns.
                             According to the letter, the author—a Mwotlap traveler—had scattered the stones across Vanuatu, turning their hiding places into a game, and leaving clues behind for those curious enough to follow.
-                            \nNow, with mystery calling and clues in hand, David joins Vetea on a journey into the heart of the Pacific—chasing legends, decoding directions, and hunting for the lost Seven Mystic Stones."
+                            \nNow, with mystery calling and clues in hand, David joins Vetea on a journey into the heart of the Pacific—chasing legends, decoding directions, and hunting for the lost Seven Mystic Stones.`
                     },
                     {
                         type: "paragraph",
-                        text: "But fate had other plans.
+                        text: `But fate had other plans.
                             Some time into their search, Vetea was injured in an accident and has been in a coma ever since.\n
                             Knowing time isn’t on his side–and suspecting that others who saw the letter online might also be after the stones–David decides to press on alone. His only clues? The cryptic letter, the paths they’ve travelled (now carefully marked on his map), and his past interactions with Vetea’s grandfather, Kaikoa.
-                            Trying to recall as many details as he can about the language and the clues, David’s memory drifts back to the beginning of their journey–to Motalava, where Mwotlap is primarily spoken, and to Kaikoa’s warm welcome that first set everything in motion."
+                            Trying to recall as many details as he can about the language and the clues, David’s memory drifts back to the beginning of their journey–to Motalava, where Mwotlap is primarily spoken, and to Kaikoa’s warm welcome that first set everything in motion.`
                     },
                     {
                         type: "comic",
