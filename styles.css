@@ -1,4 +1,1099 @@
 /**
+ * Mwotlap Treasure Hunt - Updated Styles with Smart Comic Layout System
+ * Separated from HTML for better maintainability
+ */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: #2c1810;
+    background: 
+        radial-gradient(circle at 15% 85%, rgba(255, 183, 77, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(46, 213, 115, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(116, 185, 255, 0.3) 0%, transparent 60%),
+        linear-gradient(135deg, #00cec9 0%, #55efc4 25%, #74b9ff 50%, #fd79a8 75%, #fdcb6e 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.25)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.15)"/><circle cx="60" cy="20" r="1" fill="rgba(46,213,115,0.2)"/><circle cx="30" cy="60" r="1.5" fill="rgba(255,183,77,0.25)"/></svg>') repeat,
+        radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 75% 25%, rgba(46, 213, 115, 0.15) 1px, transparent 1px);
+    background-size: 150px 150px, 80px 80px, 120px 120px;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatBubbles 20s ease-in-out infinite;
+}
+
+@keyframes floatBubbles {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -15px); }
+    50% { transform: translate(-5px, -25px); }
+    75% { transform: translate(-10px, -10px); }
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+/* Main layout */
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 120px;
+    left: -380px;
+    width: 380px;
+    height: calc(100vh - 120px);
+    background: 
+        linear-gradient(135deg, rgba(101, 67, 33, 0.95) 0%, rgba(139, 69, 19, 0.95) 100%);
+    border-radius: 0 20px 20px 0;
+    z-index: 1000;
+    transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: visible;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(210, 180, 140, 0.3);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.expanded {
+    left: 0px;
+}
+
+.sidebar-content {
+    padding: 25px;
+    color: #f4f1de;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Scrollbar styling */
+.sidebar-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: rgba(101, 67, 33, 0.3);
+    border-radius: 10px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #cd853f 0%, #daa520 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(101, 67, 33, 0.3);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+}
+
+.sidebar-content {
+    scrollbar-width: thin;
+    scrollbar-color: #cd853f rgba(101, 67, 33, 0.3);
+}
+
+/* Tab system */
+.bookmark-tabs {
+    position: absolute;
+    right: -60px;
+    top: 0;
+    width: 70px;
+    height: 100%;
+}
+
+.tab-trigger {
+    position: absolute;
+    right: 0;
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+    border: none;
+    color: #f4f1de;
+    padding: 25px 10px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: 0 15px 15px 0;
+    min-height: 120px;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    box-shadow: 
+        3px 3px 6px rgba(0, 0, 0, 0.3),
+        2px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(210, 180, 140, 0.4);
+}
+
+.tab-trigger:hover {
+    background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+    box-shadow: 
+        4px 4px 12px rgba(0, 0, 0, 0.4),
+        3px 3px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.tab-trigger.active {
+    background: linear-gradient(135deg, #cd853f 0%, #daa520 100%);
+    z-index: 1002;
+    box-shadow: 
+        8px 8px 25px rgba(0, 0, 0, 0.5),
+        6px 6px 15px rgba(0, 0, 0, 0.4),
+        4px 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(-5px) scale(1.1);
+    border: 2px solid #ffd700;
+}
+
+.tab-trigger:nth-child(1) { 
+    top: 100px; 
+}
+
+.tab-trigger:nth-child(2) { 
+    top: 240px; 
+    z-index: 1000;
+}
+
+.tab-trigger:nth-child(2).active {
+    z-index: 1002;
+}
+
+.tab-icon {
+    display: block;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    transform: rotate(90deg);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tab-text {
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tab-content {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(244, 241, 222, 0.3);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.close-sidebar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(139, 69, 19, 0.8);
+    border: 2px solid #daa520;
+    color: #f4f1de;
+    font-size: 1.8em;
+    cursor: pointer;
+    z-index: 1002;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.close-sidebar:hover {
+    background: rgba(205, 133, 63, 0.9);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Content area */
+.content-area {
+    flex: 1;
+    margin-left: 0px;
+    padding: 20px;
+    max-width: 100vw;
+    transition: margin-left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.content-area.sidebar-open {
+    margin-left: 0px;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 50px 30px;
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.95) 0%, rgba(255, 248, 220, 0.95) 100%);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(210, 180, 140, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+h1 {
+    font-size: 3.5em;
+    background: linear-gradient(135deg, #8b4513 0%, #cd853f 50%, #daa520 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.subtitle {
+    font-size: 1.4em;
+    color: #8b4513;
+    font-style: italic;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Language controls */
+.language-controls {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: 
+        linear-gradient(135deg, rgba(139, 69, 19, 0.9) 0%, rgba(101, 67, 33, 0.9) 100%);
+    padding: 15px 25px;
+    border-radius: 30px;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(210, 180, 140, 0.4);
+}
+
+.language-switch label {
+    font-weight: bold;
+    color: #f4f1de;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Toggle switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 38px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+    transition: .4s;
+    border-radius: 38px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 4px;
+    bottom: 4px;
+    background: linear-gradient(135deg, #f4f1de 0%, #daa520 100%);
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg, #cd853f 0%, #daa520 100%);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 8px rgba(218, 165, 32, 0.6);
+}
+
+input:checked + .slider:before {
+    transform: translateX(32px);
+    background: linear-gradient(135deg, #ffd700 0%, #f4f1de 100%);
+}
+
+.language-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+    font-size: 0.9em;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.language-labels span {
+    transition: all 0.3s ease;
+    color: #f4f1de;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Story content */
+.story-content {
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.95) 0%, rgba(255, 248, 220, 0.95) 100%);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    margin: 30px 0;
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(210, 180, 140, 0.5);
+    position: relative;
+}
+
+.story-element {
+    margin: 40px 0;
+}
+
+/* Narration styles */
+.narration {
+    background: 
+        linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(210, 180, 140, 0.1) 100%);
+    border-left: 6px solid #cd853f;
+    padding: 30px;
+    border-radius: 0 15px 15px 0;
+    font-style: italic;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    border: 2px solid rgba(205, 133, 63, 0.2);
+}
+
+.narration::before {
+    content: "📜";
+    position: absolute;
+    top: -12px;
+    left: 25px;
+    background: linear-gradient(135deg, #cd853f 0%, #daa520 100%);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Smart Comic Layout System */
+
+/* Container for smart comic layout */
+.smart-comic-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 0;
+    align-items: start;
+}
+
+/* Detect tall panels (aspect ratio check) and make them span 2 columns */
+.scene-comic:has(.comic-panel[style*="aspect-ratio"]) {
+    grid-column: span 2;
+}
+
+/* Alternative: Detect tall panels by height */
+.scene-comic:has(.comic-panel) {
+    container-type: inline-size;
+}
+
+/* When comic panel is tall (height > width * 1.2), span 2 columns */
+@container (aspect-ratio < 1.2) {
+    .scene-comic {
+        grid-column: span 2;
+    }
+}
+
+/* Auto-detect tall images and make them span 2 columns */
+.scene-comic .comic-panel {
+    width: 100%;
+    height: auto;
+}
+
+/* JavaScript-free detection using CSS only */
+.tall-panel {
+    grid-column: span 2;
+}
+
+.normal-panel {
+    grid-column: span 1;
+}
+
+/* For panels that are naturally tall (6x4 ratio) */
+.scene-comic .comic-panel[src*="tall"],
+.scene-comic .comic-panel[alt*="tall"] {
+    grid-column: span 2;
+}
+
+/* Alternative approach using flexbox with CSS-only detection */
+.flex-comic-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.flex-comic-container .scene-comic {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+/* Detect and handle tall panels in flex layout */
+.flex-comic-container .scene-comic .comic-panel {
+    max-height: 600px; /* Set a threshold */
+}
+
+/* When image loads, check if it's tall */
+.flex-comic-container .scene-comic .comic-panel[data-tall="true"] {
+    order: -1; /* Move tall panels to start of line */
+}
+
+/* CSS-only aspect ratio detection for modern browsers */
+@supports (aspect-ratio: 1 / 1) {
+    .smart-comic-container .scene-comic {
+        aspect-ratio: attr(data-ratio);
+    }
+    
+    .smart-comic-container .scene-comic[data-ratio="6/4"] {
+        grid-column: span 2;
+    }
+    
+    .smart-comic-container .scene-comic[data-ratio="3/4"] {
+        grid-column: span 1;
+    }
+}
+
+/* Most reliable approach - using CSS custom properties set by JS */
+.adaptive-comic-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 0;
+}
+
+.adaptive-comic-container .scene-comic {
+    grid-column: span var(--column-span, 1);
+    margin: 0;
+}
+
+/* Override existing comic styles for the new containers */
+.smart-comic-container .scene-comic,
+.flex-comic-container .scene-comic,
+.adaptive-comic-container .scene-comic {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.smart-comic-container .scene-comic .comic-panel,
+.flex-comic-container .scene-comic .comic-panel,
+.adaptive-comic-container .scene-comic .comic-panel {
+    width: 100%;
+    height: auto;
+}
+
+/* Enhanced Comic panel and speech bubble overlay styles */
+.scene-comic,
+.inline-comic {
+    position: relative;
+    display: inline-block;
+    margin: 0 15px; /* Only horizontal spacing between comics, no vertical */
+    text-align: center;
+    padding: 0; /* Remove padding to eliminate edge spacing */
+    vertical-align: top; /* Align tops when side by side */
+    transform-origin: center center; /* Set transform origin for scaling */
+}
+
+/* Comic panel without hover effects */
+.comic-panel {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 3px solid #8b4513;
+    
+    /* Fade-in animation when comics first load */
+    animation: comicFadeIn 0.6s ease-out;
+    
+    /* Set transform origin for proper scaling */
+    transform-origin: center center;
+}
+
+@keyframes comicFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure good spacing between consecutive comics only */
+.scene-comic + .scene-comic,
+.inline-comic + .inline-comic,
+.scene-comic + .inline-comic,
+.inline-comic + .scene-comic {
+    margin-top: 20px; /* Reduced spacing between consecutive comics vertically */
+}
+
+/* When comics are in the same paragraph/container and side by side */
+p .scene-comic,
+p .inline-comic,
+div .scene-comic,
+div .inline-comic {
+    margin: 0 10px; /* Only horizontal spacing when inline, no vertical */
+}
+
+.comic-placeholder {
+    display: inline-block;
+    padding: 50px;
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.9) 0%, rgba(210, 180, 140, 0.9) 100%);
+    border: 3px dashed #cd853f;
+    border-radius: 15px;
+    color: #8b4513;
+    font-style: italic;
+    text-align: center;
+    min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Updated speech bubble overlays - SELECTABLE TEXT VERSION */
+.speech-bubble-overlay {
+    position: absolute;
+    background-color: transparent;
+    cursor: text; /* Changed from 'help' to 'text' to indicate selectable text */
+    z-index: 10; /* Increased from 5 to 10 to ensure it's above comic */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: auto; /* Changed from 'none' to 'auto' to allow text selection */
+}
+
+/* The actual text inside speech bubbles - SELECTABLE AND IN FRONT */
+.speech-text {
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c1810;
+    text-shadow: 
+        2px 2px 0 rgba(255, 255, 255, 0.9),
+        -2px -2px 0 rgba(255, 255, 255, 0.9),
+        2px -2px 0 rgba(255, 255, 255, 0.9),
+        -2px 2px 0 rgba(255, 255, 255, 0.9),
+        0 0 3px rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding: 4px 6px; /* Increased padding for better clickability */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    
+    /* Make text selectable */
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    
+    /* Ensure it's clickable and in front */
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 15; /* Higher than the overlay container */
+    
+    /* Subtle background for better readability and selection visibility */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    
+    /* Cursor changes to text selection cursor */
+    cursor: text;
+}
+
+/* Enhanced selection styling */
+.speech-text::selection {
+    background: rgba(255, 215, 0, 0.4); /* Golden selection highlight */
+    color: #2c1810;
+}
+
+.speech-text::-moz-selection {
+    background: rgba(255, 215, 0, 0.4);
+    color: #2c1810;
+}
+
+/* Remove hover effects from speech bubbles */
+.speech-bubble-overlay:hover {
+    /* No hover effects */
+}
+
+.speech-bubble-overlay:hover .speech-text {
+    /* No hover effects on text */
+}
+
+/* Remove container hover effects */
+
+/* Additional accessibility improvements */
+.speech-bubble-overlay:focus-within {
+    outline: 2px solid rgba(255, 215, 0, 0.6);
+    outline-offset: 2px;
+}
+
+/* Ensure text remains selectable */
+.speech-bubble-overlay .speech-text {
+    pointer-events: auto !important;
+    user-select: text !important;
+}
+
+/* Challenge box styles */
+.challenge-box {
+    background: 
+        linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    border: 4px solid #8b0000;
+    border-radius: 20px;
+    padding: 35px;
+    margin: 35px 0;
+    box-shadow: 
+        0 15px 30px rgba(231, 76, 60, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: white;
+    position: relative;
+}
+
+.challenge-box::before {
+    content: "⚡ LINGUISTIC CHALLENGE";
+    position: absolute;
+    top: -18px;
+    left: 30px;
+    background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.challenge-box h3 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Answer section within challenges */
+.answer-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.answer-toggle-btn {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.answer-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Individual answer section styling */
+.answer-content {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.answer-content.show {
+    display: block;
+}
+
+.answer-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+}
+
+.answer-item p {
+    margin: 0;
+    color: white;
+    font-weight: 500;
+}
+
+/* Placeholder styles */
+.placeholder {
+    color: #8b4513;
+    font-style: italic;
+    text-align: center;
+    padding: 25px;
+    border: 3px dashed #cd853f;
+    border-radius: 12px;
+    background: rgba(244, 241, 222, 0.5);
+}
+
+/* Map container */
+.map-container {
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.9) 0%, rgba(210, 180, 140, 0.9) 100%);
+    border: 4px solid #8b4513;
+    border-radius: 15px;
+    padding: 35px;
+    margin: 25px 0;
+    text-align: center;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(205, 133, 63, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px, 15px 15px;
+    box-shadow: 
+        inset 0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.maps-title {
+    color: #f4f1de;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Treasure hunt content */
+.treasure-hunt-content {
+    background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
+    border: 4px solid #daa520;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 
+        inset 0 4px 8px rgba(218, 165, 32, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    color: #2c1810;
+}
+
+.treasure-hunt-content::before {
+    content: "🗞️ THE MYSTERIOUS LETTER";
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+    color: #2c1810;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.treasure-hunt-content h3 {
+    color: #8b4513;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Mwotlap text styling */
+.mwotlap-text {
+    background: rgba(72, 187, 120, 0.1);
+    border-left: 5px solid #00b894;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 0 12px 12px 0;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Chinese text styling */
+.chinese-text {
+    font-family: 'Microsoft JhengHei', 'Noto Sans CJK TC', sans-serif;
+    line-height: 1.8;
+    font-style: normal;
+}
+
+.chinese-label {
+    font-family: Arial, sans-serif;
+}
+
+/* Loading message styling */
+.loading-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #8b4513;
+    font-style: italic;
+    padding: 50px;
+    background: 
+        linear-gradient(135deg, rgba(244, 241, 222, 0.5) 0%, rgba(210, 180, 140, 0.5) 100%);
+    border: 2px dashed #cd853f;
+    border-radius: 15px;
+    margin: 20px 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Story scene spacing - remove to eliminate edge spacing */
+
+/* Debug mode styles for development */
+.debug-mode .speech-bubble-overlay {
+    background-color: rgba(255, 0, 0, 0.1) !important; /* Less opaque so text is still readable */
+    border: 2px dashed rgba(255, 0, 0, 0.5) !important;
+}
+
+.debug-mode .speech-bubble-overlay .speech-text {
+    background: rgba(255, 255, 255, 0.9) !important; /* Ensure text is readable in debug mode */
+}
+
+.debug-mode .speech-bubble-overlay::before {
+    content: attr(data-bubble-index);
+    position: absolute;
+    top: -20px;
+    left: 2px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        position: fixed;
+        top: 120px;
+        left: -380px;
+        width: 380px;
+        height: calc(100vh - 120px);
+        z-index: 2000;
+        transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .sidebar.expanded {
+        left: 0px;
+    }
+    
+    .content-area {
+        margin-left: 0 !important;
+        max-width: 100vw;
+    }
+    
+    .content-area.sidebar-open {
+        margin-left: 0 !important;
+    }
+    
+    .sidebar.expanded::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+        pointer-events: auto;
+        display: none;
+    }
+    
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    .language-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .bookmark-tabs {
+        right: -60px;
+    }
+    
+    .tab-trigger {
+        width: 60px;
+        min-height: 120px;
+    }
+    
+    .comic-panel {
+        max-width: 95%;
+    }
+    
+    .scene-comic,
+    .inline-comic {
+        margin: 0 auto; /* Center with no spacing on mobile */
+        padding: 0; /* No padding on mobile */
+        display: block; /* Stack vertically on mobile */
+    }
+    
+    .speech-bubble-overlay {
+        /* Ensure overlays work properly on mobile */
+        pointer-events: auto;
+    }
+    
+    .speech-text {
+        font-size: 14px !important;
+        padding: 3px 5px; /* Adjust padding for smaller screens */
+    }
+    
+    /* Smart comic containers responsive behavior */
+    .smart-comic-container,
+    .adaptive-comic-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .smart-comic-container .scene-comic,
+    .adaptive-comic-container .scene-comic {
+        grid-column: span 1 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .speech-text {
+        font-size: 12px !important;
+        padding: 2px 4px;
+    }
+    
+    .scene-comic,
+    .inline-comic {
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    /* Reduce horizontal spacing on very small screens */
+    p .scene-comic,
+    p .inline-comic,
+    div .scene-comic,
+    div .inline-comic {
+        margin: 0 5px; /* Minimal spacing between comics */
+        display: block;
+    }
+}
+
+/* Ensure proper spacing for comics in flex containers - only between comics */
+.story-content .scene-comic,
+.story-content .inline-comic {
+    margin: 0 15px; /* Only horizontal spacing */
+}
+
+/* When multiple comics are in the same line/container */
+.story-content > div:has(.scene-comic, .inline-comic) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Gap between comics only */
+    margin: 0; /* No margin on container */
+}
+
+/* Override any potential hiding styles for speech text */
+.speech-bubble-overlay .speech-text {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+}/**
  * Mwotlap Treasure Hunt - Updated Styles with Enhanced Comic Panels and Selectable Speech Bubbles
  * Separated from HTML for better maintainability
  */
