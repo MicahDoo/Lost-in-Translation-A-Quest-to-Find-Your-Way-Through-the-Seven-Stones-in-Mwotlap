@@ -608,10 +608,10 @@ div .inline-comic {
         0 0 4px rgba(255, 255, 255, 0.9);
 }
 
-/* Ensure comic hover effect doesn't interfere with text selection */
+/* Make speech bubbles scale with the comic on hover */
 .scene-comic:hover .speech-bubble-overlay {
-    /* Speech bubbles maintain their position when comic scales */
-    transform: none; /* Don't scale with the comic to keep text readable */
+    /* Speech bubbles scale along with the comic */
+    transform: scale(1.05);
 }
 
 /* Additional accessibility improvements */
