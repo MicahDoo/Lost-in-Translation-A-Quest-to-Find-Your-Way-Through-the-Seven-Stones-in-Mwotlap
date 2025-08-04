@@ -189,11 +189,27 @@ class SpeechBubbleDebugger {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 10px;
-                    color: green;
+                    font-size: 12px;
+                    color: #2c1810;
                     font-weight: bold;
+                    font-family: 'Comic Sans MS', cursive, sans-serif;
+                    text-align: center;
+                    border-radius: 5px;
                 `;
-                preview.textContent = text;
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = text;
+                textSpan.style.cssText = `
+                    text-shadow: 
+                        1px 1px 0 rgba(255, 255, 255, 0.8),
+                        -1px -1px 0 rgba(255, 255, 255, 0.8),
+                        1px -1px 0 rgba(255, 255, 255, 0.8),
+                        -1px 1px 0 rgba(255, 255, 255, 0.8);
+                    word-wrap: break-word;
+                    max-width: 100%;
+                `;
+                
+                preview.appendChild(textSpan);
                 parent.appendChild(preview);
                 
                 console.log('Added bubble:', bubbleInfo);
