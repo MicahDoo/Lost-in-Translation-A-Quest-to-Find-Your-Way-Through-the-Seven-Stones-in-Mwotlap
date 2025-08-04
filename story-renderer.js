@@ -1,4 +1,3 @@
-// story-renderer.js - Story rendering engine for JSON-based content
 class StoryRenderer {
     constructor(storyData) {
         this.data = storyData;
@@ -39,9 +38,13 @@ class StoryRenderer {
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">`;
         html += `<span class="comic-placeholder" style="display: none;">[Comic: ${comicData.alt}]</span>`;
         
-        // Add speech bubbles
-        comicData.speechBubbles.forEach(bubble => {
-            html += `<div class="speech-bubble" data-position="${bubble.position}">${bubble.text}</div>`;
+        // Add transparent speech bubble overlays
+        comicData.speechBubbles.forEach((bubble, index) => {
+            html += `<div class="speech-bubble-overlay" 
+                          data-bubble-index="${index}"
+                          data-text="${bubble.text}"
+                          style="left: ${bubble.left}%; top: ${bubble.top}%; width: ${bubble.width}%; height: ${bubble.height}%;"
+                          title="${bubble.text}"></div>`;
         });
         
         html += '</div>';
@@ -117,14 +120,20 @@ class StoryRenderer {
     }
     
     initializeSpeechBubbles() {
-        // Position speech bubbles based on data-position attribute
-        document.querySelectorAll('.speech-bubble[data-position]').forEach(bubble => {
-            const position = bubble.getAttribute('data-position');
-            const [horizontal, xPercent, vertical, yPercent] = position.split('-');
+        // Initialize transparent speech bubble overlays
+        document.querySelectorAll('.speech-bubble-overlay').forEach(overlay => {
+            // Add hover effects for debugging/accessibility
+            overlay.addEventListener('mouseenter', function() {
+                if (this.dataset.debug !== 'false') {
+                    this.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                    this.style.border = '1px solid rgba(255, 0, 0, 0.3)';
+                }
+            });
             
-            bubble.style.position = 'absolute';
-            bubble.style[horizontal] = xPercent + '%';
-            bubble.style[vertical] = yPercent + '%';
+            overlay.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+                this.style.border = 'none';
+            });
         });
     }
     
@@ -137,6 +146,21 @@ class StoryRenderer {
         document.querySelectorAll('.answer-toggle-btn').forEach(btn => {
             btn.innerHTML = '🗝️ Reveal Answer';
             btn.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
+        });
+    }
+    
+    // Utility methods for debugging speech bubbles
+    toggleSpeechBubbleDebug(enable = true) {
+        document.querySelectorAll('.speech-bubble-overlay').forEach(overlay => {
+            if (enable) {
+                overlay.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+                overlay.style.border = '2px dashed rgba(0, 255, 0, 0.5)';
+                overlay.dataset.debug = 'true';
+            } else {
+                overlay.style.backgroundColor = 'transparent';
+                overlay.style.border = 'none';
+                overlay.dataset.debug = 'false';
+            }
         });
     }
     
@@ -182,5 +206,26 @@ class StoryRenderer {
             id: c.id,
             languages: Object.keys(c.content)
         })));
+    }
+    
+    logSpeechBubbleData() {
+        console.log('Speech bubble data across all scenes:');
+        this.data.scenes.forEach(scene => {
+            Object.entries(scene.content).forEach(([lang, content]) => {
+                content.forEach(item => {
+                    if (item.type === 'comic' && item.speechBubbles.length > 0) {
+                        console.log(`Scene: ${scene.id} (${lang})`, {
+                            image: item.image,
+                            bubbles: item.speechBubbles.map((bubble, index) => ({
+                                index,
+                                text: bubble.text,
+                                position: `${bubble.left}%, ${bubble.top}%`,
+                                size: `${bubble.width}% x ${bubble.height}%`
+                            }))
+                        });
+                    }
+                });
+            });
+        });
     }
 }
