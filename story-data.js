@@ -45,7 +45,7 @@ const storyData = {
                             {
                                 text: "Gēn van hay!",
                                 left: 55,
-                                top: 7,
+                                top: 9,
                                 width: 23,
                                 height: 10
                             }
@@ -84,29 +84,81 @@ const storyData = {
                 en: [
                     {
                         type: "paragraph",
-                        text: "Now, with mystery calling and clues in hand, David joined Vetea on a journey into the heart of the Pacific—chasing legends, decoding directions, and hunting for the lost Seven Mystic Stones. The incredible journey started with Kaikoa showing them around from his watchtower, pointing out landmarks and the locations where he had discovered the first three stones."
+                        text: "Specifically, Kaikoa brought them up to a watchtower, showing them some landmarks and where he discovered the stones..."
                     },
                     {
                         type: "comic",
-                        image: "path/to/your/comic2.png",
+                        image: "images/2-1. Come up the watchtower.png",
                         alt: "Kaikoa showing them the watchtower",
                         speechBubbles: [
                             {
                                 text: "Gēn van hag!",
-                                left: 30,
-                                top: 15,
-                                width: 25,
-                                height: 10
+                                left: 6,
+                                top: 25,
+                                width: 45,
+                                height: 25
+                            }
+                        ]
+                    },
+                    {
+                        type: "comic",
+                        image: "images/2-2. Island.png",
+                        alt: "Kaikoa points to the island",
+                        speechBubbles: [
+                            {
+                                text: "Nok m-et ne-vet A le-pnō susu yow.",
+                                left: 50,
+                                top: 5,
+                                width: 40,
+                                height: 25
+                            }
+                        ]
+                    },
+                    {
+                        type: "comic",
+                        image: "images/2-3 Lighthouse.png",
+                        alt: "Kaikoa points to the lighthouse",
+                        speechBubbles: [
+                            {
+                                text: "Nok m-et ne-vet B le-hōm ni-myen hōw nōk.",
+                                left: 10,
+                                top: 6,
+                                width: 45,
+                                height: 25
+                            }
+                        ]
+                    },
+                    {
+                        type: "comic",
+                        image: "images/2-4 Rock.png",
+                        alt: "Kaikoa points to the rock",
+                        speechBubbles: [
+                            {
+                                text: "At ne-vet liwo hay!",
+                                left: 50,
+                                top: 5,
+                                width: 40,
+                                height: 25
+                            }
+                        ]
+                    },
+                    {
+                        type: "comic",
+                        image: "images/2-5 Totem Pole.png",
+                        alt: "Kaikoa showing them the watchtower",
+                        speechBubbles: [
+                            {
+                                text: "Aē na-han̄ tamat ne-vet liwo lok hōw. Nok et ne-vet B gēn.",
+                                left: 50,
+                                top: 5,
+                                width: 40,
+                                height: 25
                             }
                         ]
                     },
                     {
                         type: "paragraph",
-                        text: "\"Gēn van hag!\" Kaikoa called out, gesturing toward the eastern horizon."
-                    },
-                    {
-                        type: "paragraph",
-                        text: "But fate had other plans..."
+                        text: "He then led them to his lovely house."
                     }
                 ],
                 zh: [
