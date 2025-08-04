@@ -446,41 +446,85 @@ input:checked + .slider:before {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Comic panel and speech bubble overlay styles */
-.scene-comic,
-.inline-comic {
-    position: relative;
-    display: inline-block;
-    margin: 20px auto;
-    text-align: center;
-}
-
+/* Comic panel hover effect - add this to your styles.css */
 .comic-panel {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border: 3px solid #8b4513;
+    
+    /* Add smooth transition for hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Optional: shows it's interactive */
 }
 
-.comic-placeholder {
+.comic-panel:hover {
+    /* Scale up slightly on hover */
+    transform: scale(1.05);
+    /* Enhanced shadow on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    /* Optional: slight border color change */
+    border-color: #cd853f;
+}
+
+/* Comic container spacing improvements */
+.scene-comic,
+.inline-comic {
+    position: relative;
     display: inline-block;
-    padding: 50px;
-    background: 
-        linear-gradient(135deg, rgba(244, 241, 222, 0.9) 0%, rgba(210, 180, 140, 0.9) 100%);
-    border: 3px dashed #cd853f;
-    border-radius: 15px;
-    color: #8b4513;
-    font-style: italic;
+    margin: 30px auto; /* Increased from 20px to 30px for more space */
     text-align: center;
-    min-width: 300px;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
+    /* Add some breathing room around each comic */
+    padding: 10px;
 }
 
-/* Speech bubble overlays with visible text */
+/* If you want even more space between consecutive comics, 
+   you can target comics that follow other comics */
+.scene-comic + .scene-comic,
+.inline-comic + .inline-comic,
+.scene-comic + .inline-comic,
+.inline-comic + .scene-comic {
+    margin-top: 40px; /* Extra space between consecutive comics */
+}
+
+/* Alternative approach: Add spacing to the story scene containers */
+.story-scene {
+    margin-bottom: 40px; /* Ensures scenes have good separation */
+}
+
+/* For mobile responsiveness - reduce hover effect on small screens */
+@media (max-width: 768px) {
+    .comic-panel:hover {
+        /* Smaller scale increase on mobile to prevent layout issues */
+        transform: scale(1.03);
+    }
+    
+    .scene-comic,
+    .inline-comic {
+        margin: 25px auto;
+        padding: 8px;
+    }
+}
+
+/* Optional: Add a subtle animation when comics first load */
+@keyframes comicFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.comic-panel {
+    animation: comicFadeIn 0.6s ease-out;
+}
+
+/* Ensure speech bubble overlays don't interfere with hover effect */
 .speech-bubble-overlay {
     position: absolute;
     background-color: transparent;
@@ -492,35 +536,14 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     text-align: center;
-    pointer-events: none; /* Allow clicks to pass through to comic below */
+    pointer-events: none; /* This ensures clicks/hovers pass through to comic below */
 }
 
-/* The actual text inside speech bubbles - ALWAYS VISIBLE */
-.speech-text {
-    font-family: 'Comic Sans MS', cursive, sans-serif !important;
-    font-size: 16px;
-    font-weight: bold;
-    color: #2c1810;
-    text-shadow: 
-        2px 2px 0 rgba(255, 255, 255, 0.9),
-        -2px -2px 0 rgba(255, 255, 255, 0.9),
-        2px -2px 0 rgba(255, 255, 255, 0.9),
-        -2px 2px 0 rgba(255, 255, 255, 0.9),
-        0 0 3px rgba(255, 255, 255, 0.8);
-    line-height: 1.2;
-    word-wrap: break-word;
-    max-width: 100%;
-    padding: 2px;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Debug mode hover effects only show the positioning box */
-.speech-bubble-overlay:hover {
-    background-color: rgba(255, 255, 0, 0.1);
-    border: 1px dashed rgba(255, 255, 0, 0.3);
-    pointer-events: auto;
+/* If you want the speech bubbles to also scale with the comic on hover,
+   you can add this (though it might make text harder to read) */
+.scene-comic:hover .speech-bubble-overlay {
+    /* This will scale speech bubbles along with the comic */
+    transform: scale(1.05);
 }
 
 /* Text remains the same on hover - no changes needed */
