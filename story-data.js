@@ -18,7 +18,7 @@ const storyData = {
                     },
                     {
                         type: "paragraph",
-                        text: This new friend is Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava. 
+                        text: "This new friend is Vetea, a young man from Vanuatu who spoke Mwotlap—a language spoken by only around 2,000 people on the island of Motalava. 
                             He read the letter, which is written in his exact language, Mwotlap. It described seven mystic stones hidden across the islands, along with directions to find them. 
                             Three matched the description of stones once discovered by his grandfather—mysterious, glimmering relics etched with unexplainable patterns.
                             According to the letter, the author—a Mwotlap traveler—had scattered the stones across Vanuatu, turning their hiding places into a game, and leaving clues behind for those curious enough to follow.
